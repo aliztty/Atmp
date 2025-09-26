@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "atmp"
+version = "0.1.0"
+description = "Basic bank account script with tiny data-base."
+authors = ["aliz <ali.zare.mh@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
