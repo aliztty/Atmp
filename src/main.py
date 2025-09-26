@@ -2,6 +2,9 @@
 from tkinter import *
 from tkinter import messagebox
 from pathlib import Path
+import hashlib
+import database
+
 
 script_dir=Path(__file__).parent
 project_root=script_dir.parent
@@ -11,25 +14,41 @@ data_file_path.parent.mkdir(parents=True, exist_ok=True)
 window = Tk()
 window.geometry("300x400")
 
+
+def hash_passcode(passcode):
+    """Hashes a passcode using SHA-256."""
+    return hashlib.sha256(passcode.encode()).hexdigest()
+
 def Card_Registration():
-    dct = open(data_file_path, "a+")
 
     def Save_Info():
         number = entry_1.get()
         name = entry_2.get()
         passcode = entry_3.get()
         phone = entry_4.get()
-#           Card_Number : Account_Balance : Account_Pass : Phone_Number : Account_Name 
-        lst = [number, ":", "100000", ":", passcode, ":", phone, ":", "0", ":", name]
-        for string in lst:
-            dct.write(string)
-        dct.write("\n")
+
+        # Basic validation
+        if not (number and name and passcode and phone):
+            messagebox.showerror("Error", "All fields are required.")
+            return
+
+        passcode_hashed = hash_passcode(passcode)
+        
+        initial_balance = 100000
+
+        success = database.create_account(number, name, passcode_hashed, initial_balance, phone)
+
+        if success:
+            messagebox.showinfo("Success", "Account created successfully!")
+            new_window.destroy()
+        else:
+            messagebox.showerror("Error", "Card or phone number may already be in use.")
 
     def exit_inside():
         new_window.destroy()
 
     new_window = Toplevel()
-    new_window.geometry("250x250")
+    new_window.geometry("250x300")
     new_window.title("Card_Registration")
 
     label_1 = Label(new_window, text="Enter card number")
