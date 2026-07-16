@@ -12,7 +12,7 @@ data_file_path=project_root / "data" / "data.txt"
 data_file_path.parent.mkdir(parents=True, exist_ok=True)
 
 window = Tk()
-window.geometry("300x400")
+window.geometry("700x800")
 
 
 def hash_passcode(passcode):
@@ -48,7 +48,7 @@ def Card_Registration():
         new_window.destroy()
 
     new_window = Toplevel()
-    new_window.geometry("250x300")
+    new_window.geometry("600x700")
     new_window.title("Card_Registration")
 
     label_1 = Label(new_window, text="Enter card number")
@@ -91,7 +91,7 @@ def Account_Balance():
         new_window.destroy()
 
     new_window = Toplevel()
-    new_window.geometry("250x250")
+    new_window.geometry("600x700")
     new_window.title("Account_Balance")
 
     label_1 = Label(new_window, text="Enter card number")
@@ -169,7 +169,7 @@ def Buy_Charge():
         new_window.destroy()
 
     new_window = Toplevel()
-    new_window.geometry("250x250")
+    new_window.geometry("600x700")
 
     new_window.title("Buy charge")
 
@@ -259,7 +259,7 @@ def Sending_Money():
 
     new_window = Toplevel()
     new_window.title("Money_Transmission")
-    new_window.geometry("250x250")
+    new_window.geometry("600x700")
 
     label_1 = Label(new_window, text="Enter your card number")
     label_2 = Label(new_window, text="Enter the amount")
